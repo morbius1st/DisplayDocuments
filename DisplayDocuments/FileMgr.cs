@@ -35,39 +35,9 @@ namespace DisplayDocuments
 		private const string FILE_NAME = "Docx to Display in Revit.txt";
 		private const string FILE_PATH = @"Y:\AO Commercial\Revit\Information\";
 
-//		const string FILE_PATH = "Y:\\AO Commercial\\Standards\\Documents\\CAD Standards\\";
-//		private const string FILE_NAME_OLD = "Display in Revit.txt";
-
-//		internal const string NEW_FEATURE_PATH = @"Y:\AO Commercial\Revit\Information\New Features\";
-//		internal const string NEW_FEATURE_NAME = "New Features.pdf";
-//		internal const string NEW_FEATURE_FILEPATH = NEW_FEATURE_PATH + NEW_FEATURE_NAME;
-//
-//		internal const string NEW_FEATURE_REGISTER_KEY = @"Software\Autodesk\Revit\AO";
-//		internal const string NEW_FEATURE_REGISTER_VALUE_NAME = "NewFeature";
-
-//		private const string SEPERATOR_BEG = "<";
-//		private const string SEPERATOR_END = ">";
-//		private const string COMMENT = ";";
-//
-//		private const string BUTTON_NAME = "ButtonName";
-
-//		private const int len = 4;  // 0 = button name, 1 = file name, 2 = Description, , 3 = tool tip, 
-//		private const int end = 10; // maximum of 10 documents (i.e. 00 through 09)
-
-//		private static string[,] _docList = new string[end, len];
-
-//		private static int count = 0;
-
-//		private static bool initialized_old = false;
-
-//		public enum DocData
-//		{
-//			Name = 0,
-//			File = 1,
-//			Description = 2,
-//			Tip = 3
-//		}
-		
+		internal const string NEW_FEATURE_PATH = @"Y:\AO Commercial\Revit\Information\New Features\";
+		internal const string NEW_FEATURE_NAME = "New Features.pdf";
+		internal const string NEW_FEATURE_FILEPATH = NEW_FEATURE_PATH + NEW_FEATURE_NAME;
 
 		private const int ITEMS = 3;
 		private List<DocxItem> _docxList = new List<DocxItem>();
@@ -75,7 +45,6 @@ namespace DisplayDocuments
 
 		public enum DocxFields
 		{
-//			Category = 0,
 			Title = 0,
 			PathAndFile = 1,
 			Tip = 2
@@ -133,15 +102,6 @@ namespace DisplayDocuments
 
 				return false;
 			}
-
-//			foreach (DocxItem di in _docxList)
-//			{
-//				logMsgLn2("category| " + di.Key, "fields|" 
-//					+ "  [0]| " + di.Fields[0]
-//					+ "  [1]| " + di.Fields[1]
-//					+ "  [2]| " + di.Fields[2]
-//					);
-//			}
 
 			_initialized = true;
 

@@ -1,4 +1,4 @@
-#region Namespaces
+﻿#region Namespaces
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace DisplayDocuments
 //		private const string CLASSPATH_DOCS = "DisplayDocuments.ButtonOp_";
 //
 //		private const string DISPLAY_DOCUMENT_NAME = "Display Documents";
-//		private const string NEW_FEATURES_NAME = "New Features";
+		private const string NEW_FEATURES_NAME = "New Features";
 
 		public static FileMgr fm;
 
@@ -132,6 +132,8 @@ namespace DisplayDocuments
 //						MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 					return Result.Failed;
 				}
+
+				VerifyIfShowNewFeature();
 
 			}
 			catch
@@ -249,7 +251,7 @@ namespace DisplayDocuments
 			foreach (DocxItem di in fm.DocxList)
 			{
 				cbxMD = new ComboBoxMemberData(idx++.ToString(),
-					di.Fields[(int) FileMgr.DocxFields.Title]);
+					" " + di.Fields[(int) FileMgr.DocxFields.Title]);
 
 				if (di.Key.Equals(DocxItem.NONE))
 				{
@@ -290,148 +292,34 @@ namespace DisplayDocuments
 			return pdData;
 		}
 
+		private void VerifyIfShowNewFeature()
+		{
 
-//
-//		// code to add a split button
-//		private bool AddSplitButton(RibbonPanel ribbonPanel)
-//		{
-//			FileMgr fm = new FileMgr();
-//			string[,] DocList = fm.DocList;
-//
-////			VerifyIfShowNewFeature();
-//
-//			SplitButtonData sbData = new SplitButtonData("splitButton1", "Split");
-//			sb = ribbonPanel.AddItem(sbData) as SplitButton;
-//
-//			PushButtonData pbd;
-//
-//			int count = 0;
-//
-//			// for each pdf file, setup a push button and add to the split button
-//			for (int i = 0; i < fm.Size; i++)
-//			{
-//				pbd = createButton(DocList[i, (int) FileMgr.DocData.Name],
-//					DocList[i, (int) FileMgr.DocData.Description],
-//					DocList[i, (int) FileMgr.DocData.Tip], i);
-//
-//				if (pbd == null) 
-//					continue;
-//
-//				count++;
-//				sb.AddPushButton(pbd);
-//			}
-//
-//			if (count == 0)
-//				return false;
-//
-//			return true;
-//		}
-//
-//
-//		private PushButtonData createButton(string ButtonName, string ButtonText, string ToolTip, int count)
-//		{
-//			PushButtonData pdData;
-//
-//			ButtonText = formatButtonText(ButtonText);
-//
-//			string FullClassPath = string.Format("{0}{1:00}", CLASSPATH_DOCS, count);
-//
-//			try
-//			{
-//				pdData = new PushButtonData(ButtonName, ButtonText, AddInPath, FullClassPath);
-//				pdData.Image = Util.GetBitmapImage(SMALLICON_DOCS);
-//				pdData.LargeImage = Util.GetBitmapImage(LARGEICON_DOCS);
-//				pdData.ToolTip = ToolTip;
-//
-//			}
-//			catch (Exception ex)
-//			{
-//				return null;
-//			}
-//
-//			return pdData;
-//		}
-//
-//
-//		private string formatButtonText(string s)
-//		{
-//			// cap the string to a maximum of 32 characters
-//			if (s.Length > 36)
-//			{
-//				// find first space starting from the end of the text
-//				int i = s.LastIndexOf(' ');
-//
-//				if (i > 0)
-//				{
-//					// truncate string 
-//					s = s.Substring(0, i - 1);
-//				}
-//				else
-//				{
-//					// return the first 36 characters of the string
-//					// broken into 3 parts
-//					return s.Substring(0, 11) + "\n" + s.Substring(12, 23) + "\n" + s.Substring(24, 35);
-//				}
-//			}
-//		
-//			// break string into small parts of about 12 characters
-//
-//			string[] t = s.Split(' ');
-//
-//			string start = t[0];
-//			string final = "";
-//
-//			for (int i = 1; i < t.Length; i++)
-//			{
-//				if (start.Length + t[i].Length > 12)
-//				{
-//					final += start;
-//
-//					if (i != t.Length)
-//					{
-//						final += "\n";
-//					}
-//
-//					start = t[i];
-//				}
-//				else
-//				{
-//					start += " " + t[i];
-//				}
-//			}
-//
-//			return final + start;
-//
-//		}
+			long lastFileAccessTime = Util.GetNewFeatureFileLastAccTime();
 
-//		private void VerifyIfShowNewFeature()
-//		{
-//
-//			long lastFileAccessTime = Util.GetNewFeatureFileLastAccTime();
-//
-//			if (lastFileAccessTime == -1)
-//			{
+			if (lastFileAccessTime == 0)
+			{
 //				TaskDialog.Show(NEW_FEATURES_NAME, "Cannot access the New Features document");
-//
-//				return;
-//			}
-//
-//			long lastRegAccessTime = Util.GetNewFeatureRegLastAccTime(lastFileAccessTime);
-//
-//			if (lastRegAccessTime == -1)
-//			{
+
+				return;
+			}
+
+			long lastRegAccessTime = Util.GetNewFeatureRegLastAccTime(lastFileAccessTime);
+
+			if (lastRegAccessTime == -1)
+			{
 //				TaskDialog.Show(NEW_FEATURES_NAME, "Cannot access the New Features key");
-//
-//				return;
-//			}
-//
-//			if (lastFileAccessTime != lastRegAccessTime)
-//			{
-//				Util.DisplayFile(FileMgr.NEW_FEATURE_FILEPATH);
-//
-//				Util.SetNewFeatureRegLastAccTime(lastFileAccessTime);
-//			}
-//		}
+
+				return;
+			}
+
+			if (lastFileAccessTime != lastRegAccessTime)
+			{
+				Util.DisplayFile(FileMgr.NEW_FEATURE_FILEPATH);
+
+				Util.SetNewFeatureRegLastAccTime(lastFileAccessTime);
+			}
+		}
 
 //		private void Cbx_CurrentChanged(object sender,
 //			Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs e)
