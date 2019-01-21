@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Application DisplayDocuments</Name>
+    <Description>Display Office PDF Documents</Description>
+    <Assembly>DisplayDocuments.dll</Assembly>
+    <FullClassName>DisplayDocuments.Ribbon</FullClassName>
+    <AddInId>C7D1F9CB-B3E1-4CF4-9C3A-59D55B9E9B85</AddInId>
+    <VendorId>CSTU</VendorId>
+    <VendorDescription>CyberStudio</VendorDescription>
+  </AddIn>
+<!--  <AddIn Type="Command">-->
+<!--    <Text>Toggle Reference Planes</Text>-->
+<!--    <Description>Toggle Reference Planes On/Off in the Current View</Description>-->
+<!--    <Assembly>DisplayDocuments.dll</Assembly>-->
+<!--    <FullClassName>DisplayDocuments.ToggleReferencePlanes</FullClassName>-->
+<!--    <AddInId>F7A1BD24-690F-4E42-ABCD-CDB5D1B31762</AddInId>-->
+<!--    <VendorId>CSTU</VendorId>-->
+<!--    <VendorDescription>CyberStudio</VendorDescription>-->
+<!--  </AddIn>-->
+<!--  <AddIn Type="Application">-->
+<!--    <Name>Toggle Reference Planes</Name>-->
+<!--    <Description>Toggle Reference Planes On/Off in the Current View</Description>-->
+<!--    <Assembly>DisplayDocuments.dll</Assembly>-->
+<!--    <FullClassName>DisplayDocuments.ToggleReferencePlanes</FullClassName>-->
+<!--    <AddInId>0F699C2A-1AA3-486C-AA0E-DF2C4E082243</AddInId>-->
+<!--    <VendorId>CSTU</VendorId>-->
+<!--    <VendorDescription>CyberStudio</VendorDescription>-->
+<!--  </AddIn>-->
+</RevitAddIns>
